@@ -1,20 +1,18 @@
-import { db } from './firebase/config'; // Adjust the path based on your file structure
 import React from 'react';
+import Firebase from './firebase/config';  // Adjust the path if necessary
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <button onClick={() => {
-        db.firestore().collection('product').get().then(snapshot => {
-          snapshot.forEach((obj) => {
-            console.log(obj.data());
+        Firebase.firestore().collection('product').get().then(snapshot => {
+          snapshot.forEach(doc => {
+            console.log(doc.data());
           });
         });
-      }} > Click</button>
-    </div >
+      }}>Click me</button>
+    </div>
   );
 }
 
 export default App;
-
-
