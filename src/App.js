@@ -1,18 +1,28 @@
 import React from 'react';
-import Firebase from './firebase/config';  // Adjust the path if necessary
+import Firebase, { auth, firestore } from './firebase/config'; // Adjust path if necessary
 
 function App() {
+  const handleSignUp = () => {
+    auth.createUserWithEmailAndPassword("fuad@gmail.com", "123456")
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        // Example: Use Firestore
+        firestore.collection('Users').get().then((snap) => {
+          console.log(snap);
+        })
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // Handle errors
+        console.error(errorMessage);
+      });
+  };
+
   return (
     <div>
-      <button onClick={() => {
-        Firebase.firestore().collection('Users').doc('1111111').set({
-          Name: 'Aju',
-          Age: 22,
-          Place: "Calicut"
-        }).then(()=>{
-          console.log("Value updated");
-        })
-      }}>Click me</button>
+      <button onClick={handleSignUp}>Click me</button>
     </div>
   );
 }
