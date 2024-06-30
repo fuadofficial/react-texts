@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { db } from './firebase/config'; // Adjust the path based on your file structure
+import React from 'react';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <button onClick={() => {
+        db.firestore().collection('product').get().then(snapshot => {
+          snapshot.forEach((obj) => {
+            console.log(obj.data());
+          });
+        });
+      }} > Click</button>
+    </div >
   );
 }
 
 export default App;
+
+
