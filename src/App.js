@@ -5,11 +5,9 @@ function App() {
   return (
     <div>
       <button onClick={() => {
-        Firebase.firestore().collection('product').get().then(snapshot => {
-          snapshot.forEach(doc => {
-            console.log(doc.data());
-          });
-        });
+        Firebase.firestore().collection('Users').doc('MPCOHlkXX1MsXwO5yolS').delete().then(()=>{
+          console.log("deleted value")
+        })
       }}>Click me</button>
     </div>
   );
