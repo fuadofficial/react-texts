@@ -5,8 +5,12 @@ function App() {
   return (
     <div>
       <button onClick={() => {
-        Firebase.firestore().collection('Users').doc('MPCOHlkXX1MsXwO5yolS').delete().then(()=>{
-          console.log("deleted value")
+        Firebase.firestore().collection('Users').doc('1111111').set({
+          Name: 'Aju',
+          Age: 22,
+          Place: "Calicut"
+        }).then(()=>{
+          console.log("Value updated");
         })
       }}>Click me</button>
     </div>
